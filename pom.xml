@@ -11,6 +11,7 @@
 	<groupId>com.example</groupId>
 	<artifactId>relatosdepapel</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
 	<name>relatosdepapel</name>
 	<description>Implementacion de la actividad 2, relatos de papel</description>
 	<url/>
@@ -27,8 +28,11 @@
 		<url/>
 	</scm>
 	<properties>
-		<java.version>25</java.version>
+		<java.version>17</java.version>
 	</properties>
+	<modules>
+		<module>ms-books-payments</module>
+	</modules>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

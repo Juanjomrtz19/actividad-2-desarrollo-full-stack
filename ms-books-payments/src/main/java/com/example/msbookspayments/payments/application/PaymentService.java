@@ -1,9 +1,11 @@
 package com.example.msbookspayments.payments.application;
 
 import com.example.msbookspayments.payments.domain.Payment;
-import com.example.msbookspayments.payments.infraestructure.persistance.PaymentRepository;
+import com.example.msbookspayments.payments.infrastructure.persistence.PaymentRepository;
 import jakarta.transaction.Transactional;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PaymentService {
     private final PaymentRepository paymentRepository;
 

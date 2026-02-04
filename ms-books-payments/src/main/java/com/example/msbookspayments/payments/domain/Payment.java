@@ -1,12 +1,12 @@
 package com.example.msbookspayments.payments.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.Instant;
 import java.util.UUID;
+
+@Entity
+@Table(name="payments")
 
 public class Payment {
     @Id

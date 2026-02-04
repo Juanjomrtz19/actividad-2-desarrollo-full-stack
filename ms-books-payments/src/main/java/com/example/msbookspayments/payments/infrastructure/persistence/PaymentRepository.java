@@ -1,4 +1,4 @@
-package com.example.msbookspayments.payments.infraestructure.persistance;
+package com.example.msbookspayments.payments.infrastructure.persistence;
 
 import com.example.msbookspayments.payments.domain.Payment;
 import org.springframework.data.jpa.repository.JpaRepository;
