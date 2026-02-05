@@ -1,3 +1,16 @@
 spring:
   application:
     name: relatosdepapel
+  datasource:
+    url: jdbc:mysql://localhost:3306/relatos_catalogo?false&serverTimezone=UTC
+    username: admin
+    password: admin
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    defer-datasource-initialization: true
+
+server:
+  port: 8088
