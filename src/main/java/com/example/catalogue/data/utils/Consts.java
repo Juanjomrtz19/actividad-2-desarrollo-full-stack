@@ -9,6 +9,9 @@ public interface Consts {
     public static final String ISBN_CODE = "isbn_code";
     public static final String VISIBILITY = "visibility";
     public static final String VALORATION = "valoration";
+    public static final String STOCK = "stock";
+    public static final Integer MIN_VALORATION = 0;
+    public static final Integer MAX_VALORATION = 5;
 }
 
 

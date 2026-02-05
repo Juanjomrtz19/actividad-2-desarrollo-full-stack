@@ -15,13 +15,15 @@ interface BookJpaRepository extends JpaRepository<Book, Long>, JpaSpecificationE
 
     List<Book> findByPublicationDate(Date publicationDate);
 
-    List<Book> findByValoration(int valoration);
+    List<Book> findByValoration(Integer valoration);
 
-    List<Book> findByVisibility(boolean visibility);
+    List<Book> findByVisibility(Boolean visibility);
 
     List<Book> findByCategory(String category);
 
     List<Book> findByIsbnCode(String isbnCode);
+
+    List<Book> findByStock(Integer stock);
 
     List<Book> findByAuthorAndTitle(String author, String title);
 }

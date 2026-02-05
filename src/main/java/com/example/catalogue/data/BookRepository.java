@@ -25,7 +25,7 @@ public class BookRepository {
 
     public void delete(Book book) { repository.delete(book); }
 
-    public List<Book> search(String title, String author, String isbnCode, String category, Date publicationDate, Integer valoration, Boolean visibility){
+    public List<Book> search(String title, String author, String isbnCode, String category, Date publicationDate, Integer valoration, Boolean visibility, Integer stock){
         SearchCriteria<Book> spec = new SearchCriteria<>();
 
         if(StringUtils.isNotBlank(title)){
@@ -54,6 +54,10 @@ public class BookRepository {
 
         if(visibility != null){
             spec.add(new SearchStatement(Consts.VISIBILITY, visibility, SearchOperation.EQUAL));
+        }
+
+        if(stock != null){
+            spec.add(new SearchStatement(Consts.STOCK, stock, SearchOperation.EQUAL));
         }
 
         return repository.findAll(spec);

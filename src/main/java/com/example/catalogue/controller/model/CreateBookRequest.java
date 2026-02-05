@@ -14,9 +14,10 @@ import java.util.Date;
 public class CreateBookRequest {
     private String title;
     private String author;
-    private Date publicationDate;
+    private String publicationDate;
     private String isbnCode;
     private String category;
     private String valoration;
-    private String visibility;
+    private Boolean visibility;
+    private Integer stock;
 }

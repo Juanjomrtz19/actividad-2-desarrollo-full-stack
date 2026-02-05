@@ -17,5 +17,6 @@ public class BookDto {
     private String isbnCode;
     private String category;
     private String valoration;
-    private String visibility;
+    private Boolean visibility;
+    private Integer stock;
 }
