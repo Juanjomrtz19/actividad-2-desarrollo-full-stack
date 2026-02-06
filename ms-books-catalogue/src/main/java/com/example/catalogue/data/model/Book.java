@@ -36,7 +36,7 @@ public class Book {
     private String category;
 
     @Column(name = Consts.VALORATION, unique = false)
-    private String valoration;
+    private Integer valoration;
 
     @Column(name = Consts.VISIBILITY, unique = false)
     private Boolean visibility;

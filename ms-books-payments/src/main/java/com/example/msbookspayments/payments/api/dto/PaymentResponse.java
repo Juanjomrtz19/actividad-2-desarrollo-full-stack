@@ -6,7 +6,7 @@ import com.example.msbookspayments.payments.domain.PaymentStatus;
 import java.time.Instant;
 
 public record PaymentResponse(
-        String id,
+        Long id,
         Long bookId,
         Integer units,
         String buyerEmail,

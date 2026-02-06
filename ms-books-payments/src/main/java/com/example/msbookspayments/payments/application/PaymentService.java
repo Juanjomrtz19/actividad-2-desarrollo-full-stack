@@ -24,7 +24,7 @@ public class PaymentService {
 
         BookDto book = catalogueClient.getBookById(bookId);
 
-        if (Boolean.FALSE.equals(book.visible())){
+        if (Boolean.FALSE.equals(book.visibility())){
             throw new BookHiddenException(bookId);
         }
 
@@ -37,7 +37,9 @@ public class PaymentService {
         }
 
         Payment payment = Payment.confirmed(bookId, units, buyerEmail);
-        return paymentRepository.save(payment);
+        Payment saved = paymentRepository.save(payment);
+        catalogueClient.updateBookStock(bookId, stock - units);
+        return saved;
     }
 
     private int simulatedStock(Long bookId){

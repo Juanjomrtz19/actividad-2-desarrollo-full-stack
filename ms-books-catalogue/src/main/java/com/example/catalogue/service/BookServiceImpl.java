@@ -5,16 +5,14 @@ import com.example.catalogue.controller.model.CreateBookRequest;
 import com.example.catalogue.data.BookRepository;
 import com.example.catalogue.data.model.Book;
 import com.example.catalogue.data.utils.Consts;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.github.fge.jsonpatch.JsonPatchException;
-import com.github.fge.jsonpatch.mergepatch.JsonMergePatch;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.JsonNode;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -88,8 +86,8 @@ public class BookServiceImpl implements BooksService{
                 && StringUtils.hasText(request.getCategory())
                 && request.getVisibility() != null
                 && request.getValoration() != null
-                && Integer.parseInt(request.getValoration()) >= Consts.MIN_VALORATION
-                && Integer.parseInt(request.getValoration()) <= Consts.MAX_VALORATION
+                && request.getValoration() >= Consts.MIN_VALORATION
+                && request.getValoration() <= Consts.MAX_VALORATION
                 && this.isValidDate(request.getPublicationDate())
                 && request.getStock() != null;
 
@@ -116,17 +114,15 @@ public class BookServiceImpl implements BooksService{
     }
 
     @Override
+    @Transactional
     public Book updateBook(String bookId, String request){
         Book book = repository.getById(Long.valueOf(bookId));
         if(book != null) {
             try {
-                JsonMergePatch jsonMergePatch = JsonMergePatch.fromJson(objectMapper.readTree(request));
-                JsonNode target = jsonMergePatch.apply(objectMapper.readTree(objectMapper.writeValueAsString(book)));
-                Book patched = objectMapper.treeToValue(target, Book.class);
-                repository.save(patched);
-                return patched;
-            } catch (JsonProcessingException | JsonPatchException e){
-                log.error("Error updating product {}", bookId, e);
+                objectMapper.readerForUpdating(book).readValue(request);
+                return repository.save(book);
+            } catch (IOException e){
+                log.error("Error applying patch for product {}", bookId, e);
                 return null;
             }
         } else {
@@ -135,6 +131,7 @@ public class BookServiceImpl implements BooksService{
     }
 
     @Override
+    @Transactional
     public Book updateBook(String bookId, BookDto updateRequest){
         Book book = repository.getById(Long.valueOf(bookId));
         if(book != null){

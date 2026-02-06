@@ -29,7 +29,7 @@
 		<module>ms-books-payments</module>
 		<module>eureka-server</module>
 		<module>api-gateway</module>
-		<!-- <module>ms-books-catalogue</module> -->
+		<module>ms-books-catalogue</module>
 	</modules>
 
 	<dependencyManagement>

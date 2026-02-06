@@ -3,15 +3,15 @@ package com.example.msbookspayments.payments.domain;
 import jakarta.persistence.*;
 
 import java.time.Instant;
-import java.util.UUID;
 
 @Entity
 @Table(name="payments")
 
 public class Payment {
     @Id
-    @Column(length = 36, nullable = false, updatable = false)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false, updatable = false)
+    private Long id;
 
     @Column(nullable = false, updatable = false)
     private Long bookId;
@@ -34,7 +34,6 @@ public class Payment {
     }
 
     private Payment(Long bookId, Integer units, String buyerEmail){
-        this.id = UUID.randomUUID().toString();
         this.bookId = bookId;
         this.units = units;
         this.buyerEmail = buyerEmail;
@@ -50,7 +49,7 @@ public class Payment {
         this.status = PaymentStatus.REJECTED;
     }
 
-    public String getId(){
+    public Long getId(){
         return id;
     }
 
