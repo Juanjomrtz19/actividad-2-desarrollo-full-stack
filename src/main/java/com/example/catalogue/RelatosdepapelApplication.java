@@ -1,4 +1,4 @@
-package com.example.relatosdepapel;
+package com.example.catalogue;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
